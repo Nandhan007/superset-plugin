@@ -99,7 +99,48 @@ class CeleryConfig:
 
 CELERY_CONFIG = CeleryConfig
 
-FEATURE_FLAGS = {"ALERT_REPORTS": True}
+FEATURE_FLAGS = {
+    "ALERT_REPORTS": True, 
+    "EMBEDDED_SUPERSET": True,
+    "ALERT_REPORTS": True,
+    "ENABLE_TEMPLATE_PROCESSING":True,
+    "ESCAPE_MARKDOWN_HTML": False,
+    "DASHBOARD_NATIVE_FILTER":True,
+    "DASHBOARD_CROSS_FILTER":True,
+    "HORIZONTAL_FILTER_BAR":True
+}
+
+GUEST_ROLE_NAME = "Gamma"
+GUEST_TOKEN_JWT_SECRET = "q8AIlZtlAYibyIYzVDrlJgNDv8UpJdb99Tj1AAib5woHYMKmJTVJVnO/" 
+GUEST_TOKEN_JWT_ALGO = "HS256" 
+GUEST_TOKEN_HEADER_NAME = "X-GuestToken" 
+GUEST_TOKEN_JWT_EXP_SECONDS = 1000 
+
+HTML_SANITIZATION = False
+
+
+
+FEATURE_CHART_PLUGINS_EXPERIMENTAL=True
+FEATURE_THEME_ENABLE_DARK_THEME_SWITCH=True
+FEATURE_AG_GRID_TABLE_ENABLED=True
+
+# Enable Cors
+ENABLE_CORS = True 
+CORS_OPTIONS = { 
+    "supports_credentials": True, 
+    "allow_headers": "*", 
+    "expose_headers": "*", 
+    "resources": "*", 
+    "origins": ["http://192.168.1.102:5500","http://192.168.1.102:3000","*"]   
+}
+
+HTTP_HEADERS = {"X-Frame-Options":"", "Content-Security-Policy": "frame-ancestors *"} 
+
+TALISMAN_ENABLED = False 
+SESSION_COOKIE_SAMESITE = None
+ENABLE_PROXY_FIX = True
+WTF_CSRF_ENABLED = True
+
 ALERT_REPORTS_NOTIFICATION_DRY_RUN = True
 WEBDRIVER_BASEURL = f"http://superset_app{os.environ.get('SUPERSET_APP_ROOT', '/')}/"  # When using docker compose baseurl should be http://superset_nginx{ENV{BASEPATH}}/  # noqa: E501
 # The base URL for the email report hyperlinks.

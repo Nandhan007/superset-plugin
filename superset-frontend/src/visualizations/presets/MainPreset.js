@@ -32,7 +32,11 @@ import ParallelCoordinatesChartPlugin from '@superset-ui/legacy-plugin-chart-par
 import PartitionChartPlugin from '@superset-ui/legacy-plugin-chart-partition';
 import RoseChartPlugin from '@superset-ui/legacy-plugin-chart-rose';
 import TableChartPlugin from '@superset-ui/plugin-chart-table';
+import { PluginChartEditableChart } from '@superset-ui/plugin-chart-Editable-chart';
 import { WordCloudChartPlugin } from '@superset-ui/plugin-chart-word-cloud';
+// import { PluginChartHelloWorld } from 'plugin-chart-hello-world';
+import { PluginChartHelloWorld } from '@superset-ui/plugin-chart-hello-world';
+// import { SupersetHandsontablePlugin } from 'superset-handsontable-plugin';
 import WorldMapChartPlugin from '@superset-ui/legacy-plugin-chart-world-map';
 import {
   BubbleChartPlugin,
@@ -78,6 +82,7 @@ import {
   TimeGrainFilterPlugin,
 } from 'src/filters/components';
 import { PivotTableChartPlugin as PivotTableChartPluginV2 } from '@superset-ui/plugin-chart-pivot-table';
+import { PivotTableEditableChartPlugin } from '@superset-ui/plugin-chart-pivot-editable-table';
 import { HandlebarsChartPlugin } from '@superset-ui/plugin-chart-handlebars';
 import { FilterPlugins } from 'src/constants';
 import AgGridTableChartPlugin from '@superset-ui/plugin-chart-ag-grid-table';
@@ -139,6 +144,9 @@ export default class MainPreset extends Preset {
         new TimeTableChartPlugin().configure({ key: VizType.TimeTable }),
         new WordCloudChartPlugin().configure({ key: VizType.WordCloud }),
         new WorldMapChartPlugin().configure({ key: VizType.WorldMap }),
+        new PivotTableEditableChartPlugin().configure({
+          key: 'PivotEditableTable',
+        }),
         new EchartsAreaChartPlugin().configure({
           key: VizType.Area,
         }),
@@ -178,6 +186,9 @@ export default class MainPreset extends Preset {
         new EchartsSunburstChartPlugin().configure({ key: VizType.Sunburst }),
         new HandlebarsChartPlugin().configure({ key: VizType.Handlebars }),
         new EchartsBubbleChartPlugin().configure({ key: VizType.Bubble }),
+        new PluginChartHelloWorld().configure({ key: 'hello-world' }),
+        new PluginChartEditableChart().configure({ key: 'editable-table' }),
+        // new SupersetHandsontablePlugin().configure({ key: 'Editable Table' }),
         new CartodiagramPlugin({
           defaultLayers: [
             {
