@@ -74,273 +74,6 @@ function displayHeaderCell(
   );
 }
 
-// class EditableCell extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       tempValue: String(props.value || ''),
-//       isValid: true,
-//     };
-//     this.inputRef = null;
-//   }
-
-//   componentDidMount() {
-//     if (this.inputRef) {
-//       this.inputRef.focus();
-//       this.inputRef.select();
-//     }
-//   }
-
-//   componentDidUpdate(prevProps) {
-//     if (prevProps.value !== this.props.value) {
-//       this.setState({ tempValue: String(this.props.value || '') });
-//     }
-//   }
-
-//   validateValue = value => {
-//     const { validator = v => !isNaN(parseFloat(v)) && isFinite(v) } =
-//       this.props;
-//     return validator(value);
-//   };
-
-//   handleChange = e => {
-//     const value = e.target.value;
-//     const isValid = this.validateValue(value);
-//     this.setState({
-//       tempValue: value,
-//       isValid,
-//     });
-//   };
-
-//   handleSave = () => {
-//     const { tempValue, isValid } = this.state;
-//     const { onSave, onCancel } = this.props;
-
-//     if (isValid && tempValue.trim() !== '') {
-//       const numValue = parseFloat(tempValue);
-//       onSave(numValue);
-//     } else {
-//       onCancel();
-//     }
-//   };
-
-//   handleKeyPress = e => {
-//     if (e.key === 'Enter') {
-//       e.preventDefault();
-//       this.handleSave();
-//     } else if (e.key === 'Escape') {
-//       e.preventDefault();
-//       this.props.onCancel();
-//     }
-//   };
-
-//   render() {
-//     const { tempValue, isValid } = this.state;
-
-//     // return (
-//     //   <input
-//     //     ref={ref => (this.inputRef = ref)}
-//     //     type="text"
-//     //     value={tempValue}
-//     //     onChange={this.handleChange}
-//     //     onKeyDown={this.handleKeyPress}
-//     //     onBlur={this.handleSave}
-//     //     css={css`
-//     //       display: inline-block;
-//     //       min-width: 40px;
-//     //       max-width: 100%;
-//     //       padding: 0 ${this.props.theme.sizeUnit}px;
-//     //       margin: 0;
-//     //       border-radius: 2px;
-//     //       font-size: inherit;
-//     //       font-family: inherit;
-//     //       text-align: right;
-//     //       background-color: ${isValid ? '#fff' : '#ffebee'};
-//     //       box-sizing: border-box;
-//     //       vertical-align: baseline;
-//     //       background: transparent;
-//     //       border: none;
-//     //       outline: none;
-//     //       width: 100%;
-//     //       height: 100%;
-
-//     //       &:focus {
-//     //         outline: none;
-//     //         border: 1px solid
-//     //           ${isValid
-//     //             ? this.props.theme.colors.success.base
-//     //             : this.props.theme.colors.error.base};
-//     //         box-shadow: 0 0 0 1px
-//     //           ${isValid
-//     //             ? this.props.theme.colors.success.base
-//     //             : this.props.theme.colors.error.base}33;
-//     //       }
-//     //     `}
-//     //   />
-//     // );
-
-//     // Updated one
-//     // return (
-//     //   <div
-//     //     ref={ref => (this.cellRef = ref)}
-//     //     contentEditable
-//     //     suppressContentEditableWarning={true}
-//     //     onInput={this.handleInput}
-//     //     onKeyDown={this.handleKeyDown}
-//     //     onBlur={this.handleSave}
-//     //     css={css`
-//     //       min-height: 20px;
-//     //       padding: 4px 8px;
-//     //       margin: 0;
-//     //       border: none;
-//     //       font-size: inherit;
-//     //       font-family: inherit;
-//     //       font-weight: inherit;
-//     //       line-height: inherit;
-//     //       text-align: right;
-//     //       background-color: ${isValid ? '#f8f9fa' : '#ffebee'};
-//     //       color: inherit;
-//     //       cursor: text;
-//     //       outline: none;
-//     //       white-space: nowrap;
-//     //       overflow: hidden;
-
-//     //       &:focus {
-//     //         background-color: ${isValid ? '#fff' : '#ffebee'};
-//     //         box-shadow: inset 0 0 0 2px
-//     //           ${isValid
-//     //             ? this.props.theme.colors.success.base
-//     //             : this.props.theme.colors.error.base}44;
-//     //       }
-
-//     //       &:empty::before {
-//     //         content: 'Enter value...';
-//     //         color: #999;
-//     //         font-style: italic;
-//     //       }
-//     //     `}
-//     //   >
-//     //     {tempValue}
-//     //   </div>
-//     // );
-//   }
-// }
-
-// class EditableCell extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       tempValue: String(props.value || ''),
-//       isValid: true,
-//     };
-//     this.cellRef = null;
-//   }
-
-//   componentDidMount() {
-//     if (this.cellRef) {
-//       this.cellRef.focus();
-//       const range = document.createRange();
-//       range.selectNodeContents(this.cellRef);
-//       const selection = window.getSelection();
-//       selection.removeAllRanges();
-//       selection.addRange(range);
-//     }
-//   }
-
-//   componentDidUpdate(prevProps) {
-//     if (prevProps.value !== this.props.value) {
-//       this.setState({ tempValue: String(this.props.value || '') });
-//     }
-//   }
-
-//   validateValue = value => {
-//     const { validator = v => !isNaN(parseFloat(v)) && isFinite(v) } =
-//       this.props;
-//     return validator(value);
-//   };
-
-//   handleInput = e => {
-//     const value = e.target.textContent;
-//     const isValid = this.validateValue(value);
-//     this.setState({
-//       tempValue: value,
-//       isValid,
-//     });
-//   };
-
-//   handleSave = () => {
-//     const { tempValue, isValid } = this.state;
-//     const { onSave, onCancel } = this.props;
-
-//     if (isValid && tempValue.trim() !== '') {
-//       const numValue = parseFloat(tempValue);
-//       onSave(numValue);
-//     } else {
-//       onCancel();
-//     }
-//   };
-
-//   handleKeyDown = e => {
-//     if (e.key === 'Enter') {
-//       e.preventDefault();
-//       this.handleSave();
-//     } else if (e.key === 'Escape') {
-//       e.preventDefault();
-//       this.props.onCancel();
-//     }
-//   };
-
-//   render() {
-//     const { tempValue, isValid } = this.state;
-//     const { theme } = this.props;
-
-//     return (
-//       <div
-//         ref={ref => (this.cellRef = ref)}
-//         contentEditable
-//         suppressContentEditableWarning={true}
-//         onInput={this.handleInput}
-//         onKeyDown={this.handleKeyDown}
-//         onBlur={this.handleSave}
-//         css={css`
-//           min-height: 20px;
-//           padding: 4px 8px;
-//           margin: 0;
-//           border: none;
-//           font-size: inherit;
-//           font-family: inherit;
-//           font-weight: inherit;
-//           line-height: inherit;
-//           text-align: right;
-//           background-color: ${isValid ? '#f8f9fa' : '#ffebee'};
-//           color: inherit;
-//           cursor: text;
-//           outline: none;
-//           white-space: nowrap;
-//           overflow: hidden;
-
-//           &:focus {
-//             background-color: ${isValid ? '#fff' : '#ffebee'};
-//             box-shadow: inset 0 0 0 2px
-//               ${isValid ? theme.colors.success.base : theme.colors.error.base}44;
-//           }
-
-//           &:empty::before {
-//             content: 'Enter value...';
-//             color: #999;
-//             font-style: italic;
-//           }
-//         `}
-//       >
-//         {tempValue}
-//       </div>
-//     );
-//   }
-// }
-
-// Latest
-
-// Fixed EditableCell component with proper contentEditable handling
 class EditableCell extends React.Component {
   constructor(props) {
     super(props);
@@ -423,121 +156,6 @@ class EditableCell extends React.Component {
   render() {
     const { tempValue, isValid } = this.state;
     const { theme } = this.props;
-
-    // return (
-    //   <div
-    //     ref={ref => {
-    //       this.cellRef = ref;
-    //       // Set initial content
-    //       if (ref && ref.textContent !== tempValue) {
-    //         ref.textContent = tempValue;
-    //       }
-    //     }}
-    //     contentEditable
-    //     suppressContentEditableWarning={true}
-    //     onInput={this.handleInput}
-    //     onKeyDown={this.handleKeyDown}
-    //     onBlur={this.handleBlur}
-    //     css={css`
-    //       min-height: 20px;
-    //       min-width: 40px;
-    //       padding: 4px 8px;
-    //       margin: 0;
-    //       border: 1px solid
-    //         ${isValid
-    //           ? this.props.theme.colors.primary.light3
-    //           : this.props.theme.colors.error.light3};
-    //       font-size: inherit;
-    //       font-family: inherit;
-    //       font-weight: inherit;
-    //       line-height: inherit;
-    //       text-align: right;
-    //       background-color: ${isValid ? '#fff' : '#ffebee'};
-    //       color: inherit;
-    //       cursor: text;
-    //       outline: none;
-    //       white-space: nowrap;
-    //       overflow: hidden;
-    //       border-radius: 3px;
-
-    //       &:focus {
-    //         background-color: ${isValid ? '#fff' : '#ffebee'};
-    //         border-color: ${isValid
-    //           ? this.props.theme.colors.success.base
-    //           : this.props.theme.colors.error.base};
-    //         box-shadow: 0 0 0 2px
-    //           ${isValid
-    //             ? this.props.theme.colors.success.base
-    //             : this.props.theme.colors.error.base}33;
-    //       }
-
-    //       &:empty::before {
-    //         content: 'Enter value...';
-    //         color: #999;
-    //         font-style: italic;
-    //       }
-    //     `}
-    //   />
-    // );
-
-    // return (
-    //   <div
-    //     ref={ref => {
-    //       this.cellRef = ref;
-    //       // Set initial content
-    //       if (ref && ref.textContent !== tempValue) {
-    //         ref.textContent = tempValue;
-    //       }
-    //     }}
-    //     contentEditable
-    //     suppressContentEditableWarning={true}
-    //     onInput={this.handleInput}
-    //     onKeyDown={this.handleKeyDown}
-    //     onBlur={this.handleBlur}
-    //     className={`ant-table-cell ${!isValid ? 'ant-form-item-has-error' : ''}`}
-    //     css={css`
-    //       all: unset;
-    //       display: block;
-    //       box-sizing: border-box;
-    //       padding: inherit;
-    //       margin: inherit;
-    //       font-size: inherit;
-    //       font-family: inherit;
-    //       font-weight: inherit;
-    //       line-height: inherit;
-    //       text-align: inherit;
-    //       color: inherit;
-    //       background: inherit;
-    //       border: inherit;
-    //       cursor: text;
-    //       min-width: 0;
-    //       word-break: break-word;
-    //       position: relative;
-
-    //       &:focus {
-    //         background-color: ${isValid ? '#f6ffed' : '#fff2f0'} !important;
-    //         border-color: ${isValid ? '#52c41a' : '#ff4d4f'} !important;
-    //         box-shadow: 0 0 0 2px
-    //           ${isValid ? 'rgba(82, 196, 26, 0.2)' : 'rgba(255, 77, 79, 0.2)'};
-    //         outline: none;
-    //         z-index: 2;
-    //       }
-
-    //       &:empty::before {
-    //         content: 'Enter value...';
-    //         color: rgba(0, 0, 0, 0.25);
-    //         font-style: italic;
-    //         pointer-events: none;
-    //       }
-
-    //       /* Error state styling matching Ant Design */
-    //       &.ant-form-item-has-error {
-    //         border-color: #ff4d4f;
-    //         background-color: #fff2f0;
-    //       }
-    //     `}
-    //   />
-    // );
 
     return (
       <div
@@ -1569,53 +1187,28 @@ export const TableRenderer = React.memo(props => {
         const isModified = cellEditManager.isModified(rowKey, colKey);
         const isEditing = isEditingCell(rowKey, colKey);
 
-        // Determine the actual metric name for this cell
-        let currentMetricName = aggregatorName; // Default to aggregator name
+        // Determine the actual metric name for this cell for comparison with editableMetrics
+        let metricForEditCheck = aggregatorName; // Default to aggregator name
 
-        // Check if 'Metric' is part of rowAttrs or colAttrs
         const metricInRowAttrs = initialRows.includes('Metric');
         const metricInColAttrs = initialCols.includes('Metric');
 
         if (metricInRowAttrs) {
           const metricIndex = initialRows.indexOf('Metric');
-          const metricDisplayLabel = rowKey[metricIndex];
-          const metricObj = metrics.find(m =>
-            typeof m === 'string'
-              ? m === metricDisplayLabel
-              : m.label === metricDisplayLabel,
-          );
-          if (metricObj) {
-            currentMetricName =
-              typeof metricObj === 'string'
-                ? metricObj
-                : metricObj.column?.column_name || metricObj.label;
-          }
+          metricForEditCheck = rowKey[metricIndex]; // This is already the display label
         } else if (metricInColAttrs) {
           const metricIndex = initialCols.indexOf('Metric');
-          const metricDisplayLabel = colKey[metricIndex];
-          const metricObj = metrics.find(m =>
-            typeof m === 'string'
-              ? m === metricDisplayLabel
-              : m.label === metricDisplayLabel,
-          );
-          if (metricObj) {
-            currentMetricName =
-              typeof metricObj === 'string'
-                ? metricObj
-                : metricObj.column?.column_name || metricObj.label;
-          }
+          metricForEditCheck = colKey[metricIndex]; // This is already the display label
         } else if (metricsLayout === null && metrics && metrics.length > 0) {
           // Single metric mode, and 'Metric' is not a dimension
           const firstMetric = metrics[0];
-          currentMetricName =
-            typeof firstMetric === 'string'
-              ? firstMetric
-              : firstMetric.column?.column_name || firstMetric.label;
+          metricForEditCheck =
+            typeof firstMetric === 'string' ? firstMetric : firstMetric.label; // Use display label
         }
 
         const isEditableMetric =
           Array.isArray(editableMetrics) &&
-          editableMetrics.includes(currentMetricName);
+          editableMetrics.includes(metricForEditCheck);
 
         const keys = [...rowKey, ...colKey];
         let backgroundColor;
@@ -1838,35 +1431,22 @@ export const TableRenderer = React.memo(props => {
         const isEditing = isEditingCell([], colKey);
 
         // Determine the metric for total cells (if applicable).
-        let currentMetricName = aggregatorName;
+        let metricForEditCheck = aggregatorName;
         const metricInColAttrs = initialCols.includes('Metric');
 
         if (metricInColAttrs) {
           const metricIndex = initialCols.indexOf('Metric');
-          const metricDisplayLabel = colKey[metricIndex];
-          const metricObj = metrics.find(m =>
-            typeof m === 'string'
-              ? m === metricDisplayLabel
-              : m.label === metricDisplayLabel,
-          );
-          if (metricObj) {
-            currentMetricName =
-              typeof metricObj === 'string'
-                ? metricObj
-                : metricObj.column?.column_name || metricObj.label;
-          }
+          metricForEditCheck = colKey[metricIndex];
         } else if (metricsLayout === null && metrics && metrics.length > 0) {
           // Single metric mode, and 'Metric' is not a dimension
           const firstMetric = metrics[0];
-          currentMetricName =
-            typeof firstMetric === 'string'
-              ? firstMetric
-              : firstMetric.column?.column_name || firstMetric.label;
+          metricForEditCheck =
+            typeof firstMetric === 'string' ? firstMetric : firstMetric.label;
         }
 
         const isEditableMetric =
           Array.isArray(editableMetrics) &&
-          editableMetrics.includes(currentMetricName);
+          editableMetrics.includes(metricForEditCheck);
 
         const cellStyle = {
           padding: `${theme.sizeUnit}px`,
